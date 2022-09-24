@@ -7,7 +7,14 @@
     <title>To Do List</title>
 </head>
 <body>
-    <h1>It's <%= currentDay %>!</h1>
-    <p>Why are you not working?</p>
+    <% if (currentDay === "Sunday" || currentDay === "Saturday") { %>
+        <h1 style="color: #13a05e;">YAY! It's <%= currentDay %>!</h1>
+        <p>Why are you working?  Take a break!</p>
+    <% } else { %>
+        <h1 style="color: #e15808;">Hey, it's <%= currentDay %>!</h1>
+        <p>Why aren't you working?</p>
+    <% } %>
+    
+        
 </body>
 </html>
