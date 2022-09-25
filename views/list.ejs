@@ -5,23 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-   <h1> To Do List </h1>
-   <h2> <%= currentDay %> </h2>  
+
+    <div class="box" id="heading">
+        <h1> To Do List </h1>
+    </div>
    
-    <ul>
+    <div class="box" id="heading">
+        <h2> <%= currentDay %> </h2>
+    </div>
+     
+   <div class="box">
         <% for (let i = 0; i < tasks.length; i++) { %>
-            <li> <%= tasks[i] %> </li>
-            <% } %>
-    </ul>
+            <div class="item">
+                <input type="checkbox">
+                <p> <%= tasks[i] %> </p>
+            </div> 
+        <% } %>
 
-
-    <form action="/" class="form-new-task" method="post">
-        <input type="text" name="task" class="task" placeholder="new task"> 
-        <button class="form-button" type="submit">Add</button>
-    </form>
-    
+        <form action="/" class="form-new-task" method="post">
+            <input type="text" name="task" class="task" placeholder="New Task" autocomplete="off"> 
+            <button class="form-button" type="submit">+</button>
+        </form>
+   </div>
         
 </body>
 </html>
