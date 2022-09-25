@@ -2,7 +2,8 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
- 
+const date = require(__dirname + "/date.js"); //we use __dirname because our module is not a node module.
+
 const app = express();
 let tasks = ["Study.", "Walk dog.", "Study."];
 let workItems = [];
@@ -13,15 +14,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
 app.get("/", function(req, res) {
-    let today = new Date();
-
-    let options = {
-        weekday: "long",
-        day: "numeric",
-        month: "long"
-    };
-
-    let day = today.toLocaleDateString("en-US", options); 
+let day = date(); //this activates the function in the date.js module that we created and required above.
     res.render("list", {listTitle: "To Do List", currentDay: day, tasks: tasks});
 
 app.post("/", function(req, res) {
@@ -40,7 +33,10 @@ app.post("/", function(req, res) {
 
 app.get("/work", function(req, res) {
     res.render("list", {listTitle: "Work List", currentDay: day, tasks: workItems});
+});
 
+app.get("/about", function(req, res) {
+    res.render("about");
 });
  
 });
