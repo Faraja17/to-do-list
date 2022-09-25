@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js"); //we use __dirname because our module is not a node module.
 
 const app = express();
-let tasks = ["Make grocery list.", "Do laundry.", "Go food shopping."];
-let workItems = ["Study.", "Practice.", "Network."];
+const tasks = ["Make grocery list.", "Do laundry.", "Go food shopping."];
+const workItems = ["Study.", "Practice.", "Network."];
 
 app.set('view engine', 'ejs');
 
@@ -14,11 +14,11 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
 app.get("/", function(req, res) {
-let day = date.getDay(); //this activates the function in the date.js module that we created and required above.
+const day = date.getDate(); //this activates the function in the date.js module that we created and required above.
     res.render("list", {listTitle: "To Do List", currentDay: day, tasks: tasks});
 
 app.post("/", function(req, res) {
-    let task = req.body.task;
+    const task = req.body.task;
 
     if (req.body.list === "Work List") { /* This references the name and value that I gave to the button in list.ejs */
         workItems.push(task);
