@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js"); //we use __dirname because our module is not a node module.
 
 const app = express();
-let tasks = ["Study.", "Walk dog.", "Study."];
-let workItems = [];
+let tasks = ["Make grocery list.", "Do laundry.", "Go food shopping."];
+let workItems = ["Study.", "Practice.", "Network."];
 
 app.set('view engine', 'ejs');
 
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
 app.get("/", function(req, res) {
-let day = date(); //this activates the function in the date.js module that we created and required above.
+let day = date.getDay(); //this activates the function in the date.js module that we created and required above.
     res.render("list", {listTitle: "To Do List", currentDay: day, tasks: tasks});
 
 app.post("/", function(req, res) {
