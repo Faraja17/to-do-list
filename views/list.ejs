@@ -11,7 +11,7 @@
 <body>
 
     <div class="box" id="heading">
-        <h1> To Do List </h1>
+        <h1> <%= listTitle %> </h1>
     </div>
    
     <div class="box" id="heading">
@@ -28,7 +28,7 @@
 
         <form action="/" class="form-new-task" method="post">
             <input type="text" name="task" class="task" placeholder="New Task" autocomplete="off"> 
-            <button class="form-button" type="submit">+</button>
+            <button name="list" type="submit" value="<%= listTitle %>">+</button> <!-- changing the button name to "list" and value to the dynamic ejs "listTitle" enables reference in the post request so that the right title goes on each page. -->
         </form>
    </div>
         

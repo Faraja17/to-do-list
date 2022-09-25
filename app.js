@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
  
 const app = express();
 let tasks = ["Study.", "Walk dog.", "Study."];
+let workItems = [];
 
 app.set('view engine', 'ejs');
 
@@ -21,17 +22,30 @@ app.get("/", function(req, res) {
     };
 
     let day = today.toLocaleDateString("en-US", options); 
-    res.render("list", {currentDay: day, tasks: tasks});
+    res.render("list", {listTitle: "To Do List", currentDay: day, tasks: tasks});
 
 app.post("/", function(req, res) {
     let task = req.body.task;
-    tasks.push(task);
-    res.redirect("/");
+
+    if (req.body.list === "Work List") { /* This references the name and value that I gave to the button in list.ejs */
+        workItems.push(task);
+        res.redirect("/work");
+    } else {
+        tasks.push(task);
+        res.redirect("/");
+    }
+   
 
 });
+
+app.get("/work", function(req, res) {
+    res.render("list", {listTitle: "Work List", currentDay: day, tasks: workItems});
 
 });
  
+});
 app.listen(3000, function() {
     console.log("Server is running on port 3000.");
 });
+
+
